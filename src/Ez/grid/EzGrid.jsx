@@ -10,6 +10,7 @@ import EzStack from "../stack/EzStack.jsx";
 // import EzToast from "../toast/EzToast.jsx";
 import EzIconButton from "../iconButton/EzIconButton.jsx";
 import EzGridToolBar from "./gridToolBar/EzGridToolBar.jsx";
+import EzGridFooter from "./gridFooter/EzGridFooter.jsx";
 import EzToolTip from "../toolTip/EzToolTip.jsx";
 import {generalSliceActions} from "../../store/generalSlice.js";
 // import EzModal from "../modal/EzModal.jsx";
@@ -136,6 +137,7 @@ const EzGrid = ({ActionColumn, state, editComponent, addComponent, ...params}) =
                 {...params}
                 slots={{
                     toolbar: EzGridToolBar,
+                    footer: EzGridFooter
                 }}
                 slotProps={{
                     toolbar: state

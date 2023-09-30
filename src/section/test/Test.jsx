@@ -15,10 +15,10 @@ export default function Test() {
     //     test1: []
     // })
 
-    // const fixData = dummyData.map(item => {
-    //     const {id, ...rest} = item
-    //     return {...rest, active: true}
-    // })
+    const fixData = dummyData.map(item => {
+        const {id, ...rest} = item
+        return {...rest, active: true}
+    })
     return (
         <EzStack centered sx={{position: 'relative'}}>
             {/*<EzMultiselect*/}
@@ -32,9 +32,9 @@ export default function Test() {
             {/*    setValue={(value) => setState(value)}*/}
             {/*/>*/}
 
-            {/*<div>*/}
-            {/*    <button onClick={() => dummyToDb(fixData)}>toDB</button>*/}
-            {/*</div>*/}
+            <div>
+                <button onClick={() => dummyToDb(fixData)}>toDB</button>
+            </div>
 
             <button
                 onClick={() => window.dispatch(generalSliceActions.openToast('test message'))}

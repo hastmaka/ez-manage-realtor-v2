@@ -23,8 +23,8 @@ export const storage = getStorage(app);
 export const functions = getFunctions(app);
 
 // work with local emulator
-// if (['localhost', '127.0.0.1'].includes(window.location.hostname)) {
-//     connectFirestoreEmulator(db, 'localhost', 8080);
-//     connectAuthEmulator(auth, "http://localhost:9099");
-//     connectFunctionsEmulator(functions, "localhost", 5001)
-// }
+if (['localhost', '127.0.0.1'].includes(window.location.hostname)) {
+    connectFirestoreEmulator(db, 'localhost', 8080);
+    connectAuthEmulator(auth, "http://localhost:9099");
+    connectFunctionsEmulator(functions, "localhost", 5001)
+}

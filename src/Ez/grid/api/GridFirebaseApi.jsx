@@ -14,13 +14,66 @@ import {
 import {db} from "../../../helper/firebase/FirebaseConfig.js";
 import {generateDBData} from "../../../helper/index.js";
 
+//with collection listeners
+// export const getApi = async ({
+//     collection,
+//     filters = [],
+//     limit = 10,
+//     offset = 0,
+//     next,
+//     callBack
+// }) => {
+//
+//     let queries = [];
+//     if (filters.length) {
+//         for (const filter of filters) {
+//             queries.push(where(filter.field, filter.operator, filter.value));
+//         }
+//     }
+//
+//     const collectionRef = firestoreCollection(db, collection);
+//     let q = query(
+//         collectionRef,
+//         ...queries,
+//         orderBy('created_at'),
+//         next? startAfter(offset) : endBefore(offset),
+//         next? firebaseLimit(limit) : limitToLast(limit),
+//     )
+//
+//     try {
+//         //getting total record in DB
+//         // const count = await getCountFromServer(firestoreCollection(db, "clients"));
+//         let data, refs;
+//
+//         const snapshotPromise = new Promise((resolve, ) => {
+//             onSnapshot(q, { includeMetadataChanges: true }, async (querySnapshot) => {
+//                 //here to trigger document size everytime record is added or deleted
+//                 const countQuery = query(collectionRef, where('active', '==', true));
+//                 const count = await getDocs(countQuery);
+//                 data = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+//                 refs = [querySnapshot.docs[0], querySnapshot.docs[querySnapshot.docs.length - 1]];
+//                 resolve(callBack({
+//                     data,
+//                     count: count.size,
+//                     refs
+//                 }));
+//             });
+//         });
+//
+//         // Wait for the snapshotPromise to resolve before returning the data
+//         await snapshotPromise;
+//     } catch (e) {
+//         return { e };
+//     }
+// };
+
+//without collection listeners
 export const getApi = async ({
     collection,
     filters = [],
     limit = 10,
     offset = 0,
-    next,
-    callBack
+    next
 }) => {
 
     let queries = [];
@@ -40,23 +93,15 @@ export const getApi = async ({
     )
 
     try {
-        const count = await getCountFromServer(firestoreCollection(db, "clients"));
-        let data, refs;
+        //getting total record in DB
+        // const count = await getCountFromServer(firestoreCollection(db, "clients"));
+        const countQuery = query(collectionRef, where('active', '==', true));
+        const count = await getDocs(countQuery);
 
-        const snapshotPromise = new Promise((resolve, ) => {
-            onSnapshot(q, { includeMetadataChanges: true }, (querySnapshot) => {
-                data = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-                refs = [querySnapshot.docs[0], querySnapshot.docs[querySnapshot.docs.length - 1]];
-                resolve(callBack({
-                    data,
-                    count: count.data().count,
-                    refs
-                }));
-            });
-        });
-
-        // Wait for the snapshotPromise to resolve before returning the data
-        await snapshotPromise;
+        const querySnapshot = await getDocs(q);
+        const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+        const refs = [querySnapshot.docs[0], querySnapshot.docs[querySnapshot.docs.length - 1]]
+        return {data, refs, count: count.size}
     } catch (e) {
         return { e };
     }

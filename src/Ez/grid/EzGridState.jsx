@@ -65,23 +65,43 @@ export function EzGridState(props) {
 
 
     const fetchData = async (whoTrigger) => {
-        // let trueRef = optRef || refs
+        let trueRef = whoTrigger === 'search' ? [] : refs
         if (store.type === 'remote') {
             setState({isLoading: true});
             try {
                 // console.log('initiate db query', timer)
-                // debugger
-                await getApi({
+
+                // in case of use onSnapshot (set collection listeners) all the same except
+                // the callBack function which is trigger everytime something change in the collection
+                // await getApi({
+                //     collection: store.api.read,
+                //     limit: paginationModel.pageSize,
+                //     filters: [{field: 'active', operator: '==', value: true}],
+                //     offset: (refs.length > 0 && whoTrigger !== 'search') ?
+                //         paginationModel.next ? refs[1] : refs[0] :
+                //         paginationModel.page * paginationModel.pageSize,
+                //     next: paginationModel.next,
+                //     callBack: listenerForUpdate
+                // });
+                const response = await getApi({
                     collection: store.api.read,
                     limit: paginationModel.pageSize,
                     filters: [{field: 'active', operator: '==', value: true}],
-                    offset: (refs.length > 0 && whoTrigger !== 'search') ?
-                        paginationModel.next ? refs[1] : refs[0] :
+                    offset: trueRef.length ?
+                        paginationModel.next ? trueRef[1] : trueRef[0] :
                         paginationModel.page * paginationModel.pageSize,
-                    next: paginationModel.next,
-                    callBack: listenerForUpdate
+                    next: paginationModel.next
                 });
-
+                const transformedData = response[store.rootProperty].map((item) => {
+                    //update the selectedRow manually
+                    if (selectedRow?.id === item.id) {
+                        setState({selectedRow: new store.model(item)})
+                    }
+                    return new store.model(item)
+                });
+                if (!response.error) {
+                    setState({...response, data: transformedData});
+                }
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -293,12 +313,11 @@ export function EzGridState(props) {
                             collection: store.api.update,
                             data: {...formData, serviceName}
                         });
-                        return window.dispatch(generalSliceActions.openToast({
+                        window.dispatch(generalSliceActions.openToast({
                             content: 'Record was created',
                             type: 'success'
                         }))
                     }
-                    // handleCloseModal();
                 } catch (error) {
                     window.dispatch(generalSliceActions.openToast({
                         content: 'An error occur',
