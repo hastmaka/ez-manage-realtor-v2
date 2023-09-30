@@ -1,0 +1,19 @@
+.north {
+    background-color: lightblue;
+}
+
+.south {
+    background-color: lightpink;
+}
+
+.west {
+    background-color: lightgreen;
+}
+
+.center {
+    background-color: lightgray;
+}
+
+.east {
+    background-color: lightyellow;
+}

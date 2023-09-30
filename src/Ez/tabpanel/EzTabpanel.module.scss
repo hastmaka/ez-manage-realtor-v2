@@ -1,0 +1,34 @@
+.tab-panel {
+    display: flex;
+    background-color: #f2f2f2;
+
+    .side-bar {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        background-color: #323f4d;
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #acb2b7;
+            font-size: 18px;
+            height: 44px;
+            line-height: 44px;
+            &:hover {
+                background-color: #46525f;
+                color: #fff !important;
+            }
+        }
+    }
+
+    .tab-content {
+        padding: 10px;
+        flex: 1;
+    }
+}
+
+.active {
+    background-color: #46525f;
+    color: #fff !important;
+}

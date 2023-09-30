@@ -1,0 +1,91 @@
+:root {
+    --multiselectHeight: 0px;
+    --chipWidthSum: 0px;
+}
+.multiselect {
+    position: relative;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    padding: 5px 8px 5px 14px;
+    background-color: #fff;
+    cursor: text;
+    flex: 1;
+    &:hover {
+        border: 1px solid #1976d2;
+    }
+    &:focus-within {
+        .label {
+            top: -12px;
+            color: #1976d2;
+            padding: 0 4px;
+        }
+    }
+
+    .label {
+        position: absolute;
+        transition: all cubic-bezier(0, 0, 0.2, 1) 200ms;
+        background-color: white;
+        padding: 0 4px;
+        font-size: .8rem;
+        color: rgba(0, 0, 0, 0.54);
+        left: 14px;
+        top: 32%;
+    }
+
+    .fix-container {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width: calc(100% - 47px);
+        position: relative;
+        gap: 8px;
+        input {
+            border: none;
+            padding: 11px 16px 11px 0;
+            margin: 0;
+            text-overflow: ellipsis;
+            background-color: transparent;
+            flex-grow: 1;
+            &:focus-visible {
+                border: none;
+                outline: none;
+            }
+        }
+    }
+
+    .option-container {
+        position: absolute;
+        width: 100%;
+        box-shadow: rgba(126, 126, 126, 0.2) 0 5px 5px -3px;
+        top: calc(var(--multiselectHeight) + 12px);
+        left: 0;
+        z-index: 1000;
+        max-height: 287px;
+        overflow-y: auto;
+
+        .option {
+            padding: 10px;
+            background-color: #ffffff;
+            &:first-child {
+                border-top-right-radius: 4px;
+                border-top-left-radius: 4px;
+            }
+            &:last-child {
+                border-bottom-right-radius: 4px;
+                border-bottom-left-radius: 4px;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: #e1e1e1;
+            }
+        }
+    }
+
+    &:focus-within {
+        border: 1px solid #1976d2;
+    }
+
+    svg {
+        //color: #6b6b6b
+    }
+}

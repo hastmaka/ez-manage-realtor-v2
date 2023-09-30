@@ -1,0 +1,43 @@
+.toast-container {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 16px;
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  top: 30px;
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to slide in from the top and slide out towards the top.
+  However, delay the slide out process for 2.5 seconds */
+  -webkit-animation: slideIn 0.5s, slideOut 0.5s 2.5s;
+  animation: slideIn 0.5s, slideOut 0.5s 2.5s;
+}
+
+/* Animations to slide the snackbar in and out from the top */
+@-webkit-keyframes slideIn {
+  from {top: 0; opacity: 0;}
+  to {top: 30px; opacity: 1;}
+}
+
+@keyframes slideIn {
+  from {top: 0; opacity: 0;}
+  to {top: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes slideOut {
+  from {top: 30px; opacity: 1;}
+  to {top: 0; opacity: 0;}
+}
+
+@keyframes slideOut {
+  from {top: 30px; opacity: 1;}
+  to {top: 0; opacity: 0;}
+}

@@ -1,0 +1,37 @@
+.ez-table-wrapper {
+    flex: 1;
+    overflow: auto;
+
+    .ez-table-body {
+        overflow-y: auto;
+
+        .ez-table-row {
+            display: flex;
+            width: 100%;
+
+            &:hover {
+                background-color: #dfe6ed;
+            }
+
+            &:nth-child(odd) {
+                background-color: #e5e5e5;
+            }
+
+            .ez-table-cell {
+                display: flex;
+                justify-content: center;
+                padding: 8px;
+                border-bottom: 1px solid #ddd;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                span {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}

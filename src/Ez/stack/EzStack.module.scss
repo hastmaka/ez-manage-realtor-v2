@@ -1,0 +1,19 @@
+:root {
+    --display: 'flex';
+    --flexDirection: 'column';
+    --align-items: '';
+    --justifyContent: '';
+    --gap: '8px';
+    --flex: '';
+    --border: ''
+}
+
+.ez-stack {
+    display: var(--display);
+    flex-direction: var(--flexDirection);
+    align-items: var(--align-items);
+    justify-content: var(--justifyContent);
+    gap: var(--gap);
+    flex: var(--flex);
+    border: var(--border);
+}

@@ -1,0 +1,58 @@
+.button {
+    padding: 5px 15px;
+    min-height: 36px;
+    border-radius: 4px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border: 1px solid rgba(144, 202, 249, 0.5);
+    cursor: pointer;
+    line-height: 1.75;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.cancel {
+    color: white;
+    background-color: #CC3636;
+
+    &:hover {
+        background-color: #8d2424
+    }
+}
+
+
+.confirm {
+    color: white;
+    background-color: #2fa868;
+
+    &:hover {
+        background-color: #187944
+    }
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: rgba(68, 68, 68, 0.3);
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.full-with {
+    width: 100%;
+}
+
+.loader {
+    border: 3px solid #f3f3f3; /* Light grey */
+    border-top: 3px solid #4ba291; /* Blue */
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    animation: spin .5s linear infinite;
+    overflow: hidden;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

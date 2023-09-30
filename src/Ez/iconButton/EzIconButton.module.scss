@@ -1,0 +1,21 @@
+.icon-button {
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border: 1px solid transparent;
+    color: #3f3f3f;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    &:hover {
+        background-color: #eaeaea;
+    }
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: rgba(68, 68, 68, 0.3);
+    background-color: rgba(255, 255, 255, 0.12);
+}

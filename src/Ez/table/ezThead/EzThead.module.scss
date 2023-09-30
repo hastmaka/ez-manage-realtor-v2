@@ -1,0 +1,25 @@
+.ez-table-header {
+    display: flex;
+    background-color: #f5f5f5;
+    font-weight: bold;
+    min-height: 56px;
+    top: 0;
+    z-index: 1;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+
+    .ez-table-cell {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        span {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

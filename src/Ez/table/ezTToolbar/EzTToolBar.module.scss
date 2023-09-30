@@ -1,0 +1,34 @@
+.ez-table-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #d5d5d5;
+
+    input[type="text"] {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+}
+
+//.ez-table-toolbar .left-content {
+//    display: flex;
+//    align-items: center;
+//}
+//
+//.ez-table-toolbar .right-content {
+//    display: flex;
+//    align-items: center;
+//}
+//
+//.ez-table-toolbar button {
+//    margin-right: 10px;
+//}
+//
+//.ez-table-toolbar input[type="text"] {
+//    padding: 5px;
+//    border: 1px solid #ccc;
+//    border-radius: 3px;
+//}
